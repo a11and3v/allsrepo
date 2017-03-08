@@ -1,0 +1,98 @@
+Bash!#
+Remember, [param] means optional :D
+
+##Array:
+array_var=( val1 val2 val3.... )
+
+--To get an array element
+echo ${array_var[1]}	#prints val2
+
+--To loop through an array
+for i in "${array_var[@]}"; do something with $i(or dont); done
+
+##Check if variable exists and assign default value if it doesn't
+${variable:-default_value} 
+
+--Alternatively,
+if [ -z ${variable} ]; then assign val or try to initialise again; fi
+
+##Get command line parameters
+$1 -- first param
+$2 -- second 	#parameters separated by spaces
+.
+.
+.
+
+$@ -- all parameters separated by elements with double quotes-- "val of $1" "val of $2"... -> an array
+
+##inifinite while loop
+while :
+do 
+done
+(or)
+while true 
+do 
+done
+
+##Split string based on delimiter using internal field separator(IFS) variable
+IFS=':' read -ra ARRAY <<< "$INPUT"  -->split $INPUT based on delimiter ':' and store the results in array $ARRAY
+
+#What the actual fuck...
+ARRAY=($INPUT) --> does the same thing -_-
+
+##Bash arithmetic
+num=$((num1 + num2)) --> mind the spaces flanking '+'
+(or)
+num=$(($num1 + $num2))
+#and of course
+num=$((num1 + 1 + 2))
+#(`expr` is legacy)
+
+##Shutdown script (Old school runlevel method)
+create script in /etc/init.d
+
+create symlink to /etc/rc0.d
+ln -s /etc/init.d/script /etc/rc0.d
+
+##Encrypt using zip
+zip --encrypt file.zip files
+
+##Start vnc over ssh(from official manpages)
+
+ssh -t -L 5900:localhost:5900 far-host 'x11vnc -localhost  -display :0'
+
+##low level volume changer (over 99999)
+
+pactl set-sink-volume <dev no> 150%
+pactl list sinks (or) pacmd list-sinks --> to find dev no
+
+pactl set-sink-volume 1 150% --> Current ubuntu/lab(device 1)
+
+##Record audio 
+arecord <filename>
+
+#Play audio (flac/wav/non compressed audio only)
+aplay <filename>
+
+##Stream audio over ssh (prelim command)
+arecord -c 1 -r 8000 | ssh <user>@<host> 'mplayer -demuxer rawaudio channels=1:rate=8000[:samplesize=1] -nocache - '
+
+#disable mouse
+xinput list  --> find device id of mouse
+ximput set-prop <device id> "Device Enabled" 0   --> 1 to enable again 
+
+##Move files over ssh (scp move variant)
+rsync -avz --remove-source-files /this/dir user@host:/remomte/dir
+
+##This is getting kinda messy...
+
+##List all filesystems, their mountpoints, and mount options 
+/proc/mounts
+mount -v      --> basically 'cat's /proc/mounts
+
+##Mount as rw
+#first,
+umount <device> (or) umount <mountpoint>
+#then,
+mount -o remount,rw [-force] <device> <mountpoint>
+

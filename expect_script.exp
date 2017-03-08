@@ -1,0 +1,37 @@
+#!/usr/bin/expect
+
+#Usage: ./expect_script.exp <ip> <user> <password> <command>
+
+set timeout 10
+set ip [lindex $argv 0]
+set user [lindex $argv 1]
+set password [lindex $argv 2]
+
+spawn ssh "$user\@$ip"
+expect "password:"
+send "$password\r"
+expect "$ "
+send "export DISPLAY=:0\r"
+expect "$ "
+
+set command [lindex $argv 3]
+
+send "$command\r"
+expect "$user:"
+send "$password\r"
+expect {
+	"]" {
+		send "y\r"
+	}
+}
+expect {
+	"]" {
+		send "y\r"
+	}
+}
+
+
+expect "$ "
+send "exit\r"
+interact
+
