@@ -240,7 +240,7 @@ Remember to not include own ip in hosts list"
 		back
 	}
 	file_dump_fdrive() {
-		echo "shut the f up"
+		echo "hello"
 	}
 
 	clear
