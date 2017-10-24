@@ -96,3 +96,10 @@ umount <device> (or) umount <mountpoint>
 #then,
 mount -o remount,rw [-force] <device> <mountpoint>
 
+##Firewall auth
+ 
+#Login
+curl -d mode="191" -d username="user" -d password="user" http://192.168.0.8:8090/httpclient.html > output.txt; cat output.txt; rm output.txt
+
+
+
