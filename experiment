@@ -1,6 +1,0 @@
-#!/bin/bash
-vara="a v sdf asd ss"
-array=($vara)
-for  i in ${array[@]}; do 
-	echo "$i dumbass"
-done

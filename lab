@@ -1,1 +1,11 @@
+##WAN IP: <replace>
+
+##Local IP's
+#Lab
 12:192.168.11.215
+
+#Cslab
+192.168.5.170
+
+#Library
+192.168.0.170
