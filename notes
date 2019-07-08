@@ -101,5 +101,13 @@ mount -o remount,rw [-force] <device> <mountpoint>
 #Login
 curl -d mode="191" -d username="user" -d password="user" http://192.168.0.8:8090/httpclient.html > output.txt; cat output.txt; rm output.txt
 
-
+##Sinlge user mode(clg ubuntu17)
+#press 'Esc' while booting to enter grub boot menu
+#find the ubuntu boot entry and press 'e' to edit the entry
+#remove all kernel boot params and add
+rw init=/bin/bash
+#Now a prompt should appear. To chage password of a user,
+passwd username
+#If permissions are denied or some shit
+mount -o remount,rw /
 
